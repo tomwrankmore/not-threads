@@ -6,7 +6,7 @@ import { buttonVariants } from "@/components/ui/button";
 import { Home, User, PenSquare, Search } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { ModeToggle } from "./ModeToggle";
-import { useSession } from "next-auth/react";
+import { signOut, useSession } from "next-auth/react";
 import Image from "next/image";
 import { Button } from "./ui/button";
 import { UserAvatar } from "./UserAvatar";
@@ -51,12 +51,12 @@ export function Navigation() {
             Sign in
           </Link>
         ) : (
-          <Link
-            href={"/api/auth/signout"}
+          <Button
+            onClick={() => signOut({ callbackUrl: '/' })}
             className={buttonVariants({ variant: "outline" })}
           >
             Sign out
-          </Link>
+          </Button>
         )}
       </div>
     </nav>
