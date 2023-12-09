@@ -1,15 +1,12 @@
 import Post from "../components/Post";
 import { getPosts } from "@/lib/data";
-import Image from "next/image";
-
-import { AspectRatio } from "@/app/components/ui/aspect-ratio";
 
 export default async function Home() {
   const posts = await getPosts();
   return (
     <main className="max-w-md mx-auto mt-8">
       <div>
-        <h1 className="scroll-m-20 text-xl font-bold mb-4">All Posts</h1>
+        <h1 className="scroll-m-20 text-xl font-bold mb-4">All Posts!</h1>
       </div>
       <div className="mb-4">
         {posts.map((post, idx) => {
