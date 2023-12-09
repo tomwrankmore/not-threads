@@ -38,7 +38,7 @@ export default async function ProfilePage() {
       {!posts.length ? (
         <div className="flex items-center justify-between">
         <p>No posts yet!</p>
-        <Link href="/add-post" className={buttonVariants({ variant: "outline" })}>Say somethin'</Link>
+        <Link href="/add-post" className={buttonVariants({ variant: "outline" })}>Say somethin&apos;</Link>
         </div>
         
       ) : (
