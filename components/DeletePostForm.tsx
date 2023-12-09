@@ -37,7 +37,7 @@ const DeletePostForm = ({ postId }: { postId: string }) => {
           </AlertDialogDescription>
         </AlertDialogHeader>
         <AlertDialogFooter>
-          <AlertDialogCancel>Cancel</AlertDialogCancel>
+          <AlertDialogCancel onClick={() => setOpen(false)}>Cancel</AlertDialogCancel>
           <form
           id="deletePost"
             action={async () => {
