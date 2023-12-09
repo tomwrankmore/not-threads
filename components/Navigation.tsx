@@ -19,12 +19,15 @@ export function Navigation() {
   return (
     <nav className="max-w-3xl mx-auto flex items-center justify-between p-4 z-[100] relative">
       <div className="flex-1 flex items-center justify-start gap-4">
-        <Link href="/profile">
-          <UserAvatar
-            image={session?.user?.image!}
-            name={session?.user?.name!}
-          />
-        </Link>
+        {session?.user && (
+          <Link href="/profile">
+            <UserAvatar
+              image={session?.user?.image!}
+              name={session?.user?.name!}
+            />
+          </Link>
+        )}
+
         <ul className="flex gap-4">
           <li>
             <Link href="/">
@@ -52,8 +55,8 @@ export function Navigation() {
           </Link>
         ) : (
           <Button
-            variant={'outline'}
-            onClick={() => signOut({ callbackUrl: '/' })}
+            variant={"outline"}
+            onClick={() => signOut({ callbackUrl: "/" })}
           >
             Sign out
           </Button>
