@@ -52,8 +52,8 @@ export function Navigation() {
           </Link>
         ) : (
           <Button
+            variant={'outline'}
             onClick={() => signOut({ callbackUrl: '/' })}
-            className={buttonVariants({ variant: "outline" })}
           >
             Sign out
           </Button>
