@@ -1,8 +1,8 @@
 import Post from "../components/Post";
-import { getPosts } from "@/lib/data";
+import { getAllPosts } from "@/lib/data";
 
 export default async function Home() {
-  const posts = await getPosts();
+  const posts = await getAllPosts();
   return (
     <main className="max-w-md mx-auto mt-8">
       <div>

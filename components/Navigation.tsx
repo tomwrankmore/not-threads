@@ -6,7 +6,7 @@ import { buttonVariants } from "@/components/ui/button";
 import { Home, User, PenSquare, Search } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { ModeToggle } from "./ModeToggle";
-import { signOut, useSession } from "next-auth/react";
+import { signIn, signOut, useSession } from "next-auth/react";
 import Image from "next/image";
 import { Button } from "./ui/button";
 import { UserAvatar } from "./UserAvatar";
@@ -19,15 +19,6 @@ export function Navigation() {
   return (
     <nav className="max-w-3xl mx-auto flex items-center justify-between p-4 z-[100] relative">
       <div className="flex-1 flex items-center justify-start gap-4">
-        {session?.user && (
-          <Link href="/profile">
-            <UserAvatar
-              image={session?.user?.image!}
-              name={session?.user?.name!}
-            />
-          </Link>
-        )}
-
         <ul className="flex gap-4">
           <li>
             <Link href="/">
@@ -47,12 +38,12 @@ export function Navigation() {
       <div className="flex-1 flex items-center justify-end gap-4">
         <ModeToggle />
         {!session?.user ? (
-          <Link
-            href={"/api/auth/signin"}
+          <Button
+            onClick={() => signIn()}
             className={buttonVariants({ variant: "outline" })}
           >
             Sign in
-          </Link>
+          </Button>
         ) : (
           <Button
             variant={"outline"}
@@ -60,6 +51,14 @@ export function Navigation() {
           >
             Sign out
           </Button>
+        )}
+        {session?.user && (
+          <Link href="/profile">
+            <UserAvatar
+              image={session?.user?.image!}
+              name={session?.user?.name!}
+            />
+          </Link>
         )}
       </div>
     </nav>

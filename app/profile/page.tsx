@@ -1,23 +1,11 @@
-import prisma from "@/lib/prisma";
 import { auth } from "@/auth";
 import { redirect } from "next/navigation";
 import Post from "../../components/Post";
-import Image from "next/image";
 import ProfileHeader from "@/components/ProfileHeader";
 import Link from "next/link";
-import { buttonVariants } from "@/components/ui/button"
-
-async function getUserPosts(userId: string) {
-  const posts = await prisma.post.findMany({
-    where: { authorId: userId },
-    include: {
-      author: {
-        select: { name: true, image: true },
-      },
-    },
-  });
-  return posts;
-}
+import { Button, buttonVariants } from "@/components/ui/button";
+import { getAllPostsByUser } from "@/lib/data";
+import DeleteUserForm from "@/components/DeleteUserForm";
 
 export default async function ProfilePage() {
   const session = await auth();
@@ -26,10 +14,11 @@ export default async function ProfilePage() {
     redirect("/api/auth/signin?callbackUrl=/profile");
   }
 
-  const posts = await getUserPosts(session.user.id);
+  const posts = await getAllPostsByUser(session.user.id);
 
   return (
     <main className="max-w-md mx-auto mt-8">
+      <DeleteUserForm userId={session.user.id} />
       <ProfileHeader
         name={session.user.name!}
         email={session.user.email!}
@@ -37,10 +26,14 @@ export default async function ProfilePage() {
       />
       {!posts.length ? (
         <div className="flex items-center justify-between">
-        <p>No posts yet!</p>
-        <Link href="/add-post" className={buttonVariants({ variant: "outline" })}>Say somethin&apos;</Link>
+          <p>No posts yet!</p>
+          <Link
+            href="/add-post"
+            className={buttonVariants({ variant: "outline" })}
+          >
+            Say somethin&apos;
+          </Link>
         </div>
-        
       ) : (
         posts.map((post) => {
           return (

@@ -12,7 +12,7 @@ export async function getPostById(id: string) {
   return post;
 }
 
-export async function getPosts() {
+export async function getAllPosts() {
   const posts = await prisma.post.findMany({
     where: { published: true },
     include: {

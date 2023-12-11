@@ -55,3 +55,19 @@ export const deletePost = async (id: string) => {
   revalidatePath("/");
   redirect("/");
 };
+
+
+export const deleteUser = async (id: string) => {
+  try {
+    await prisma.user.delete({
+      where: {id},
+    });
+  } catch (error) {
+    return {
+      error: getErrorMessage(error),
+    };
+  }
+
+  revalidatePath("/");
+  redirect("/");
+}

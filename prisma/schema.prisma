@@ -60,5 +60,5 @@ model Post {
   publishedAt DateTime @default(now())
   published   Boolean  @default(false)
   authorId    String?
-  author      User?    @relation(fields: [authorId], references: [id])
+  author      User?    @relation(fields: [authorId], references: [id], onDelete: Cascade)
 }
