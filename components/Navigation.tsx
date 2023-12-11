@@ -40,7 +40,7 @@ export function Navigation() {
         {!session?.user ? (
           <Button
             onClick={() => signIn()}
-            className={buttonVariants({ variant: "outline" })}
+            variant={"outline"}
           >
             Sign in
           </Button>
