@@ -14,6 +14,7 @@ const UserProfile = async ({ params }: { params: { id: string } }) => {
         name={user?.name!}
         email={user?.email!}
         image={user?.image!}
+        id={user?.id!}
       />
       {posts.map((post, idx) => {
         return (
