@@ -24,7 +24,7 @@ const Post = async ({
     <div className="border-t py-6">
       <div className="flex gap-4 ">
         <div className="relative h-8 w-8">
-          <Link href={`/user-profile/${authorId}`}>
+          <Link href={session?.user.id != authorId ? `/user-profile/${authorId}` : '/profile'}>
             <Image
               src={author?.image!}
               alt={author?.name!}
@@ -35,7 +35,7 @@ const Post = async ({
         </div>
         <div className="flex-1">
           <h1 className="font-bold mb-2">
-            <Link href={`/user-profile/${authorId}`}>{author.name}</Link>
+          <Link href={session?.user.id != authorId ? `/user-profile/${authorId}` : '/profile'}>{author.name}</Link>
           </h1>
           <p className="mb-4 text-sm tracking-tight">{content}</p>
         </div>

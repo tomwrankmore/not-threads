@@ -2,14 +2,10 @@
 
 import * as React from "react";
 import Link from "next/link";
-import { buttonVariants } from "@/components/ui/button";
 import { Home, User, PenSquare, Search } from "lucide-react";
-import { cn } from "@/lib/utils";
 import { ModeToggle } from "./ModeToggle";
-import { signIn, signOut, useSession } from "next-auth/react";
-import Image from "next/image";
-import { Button } from "./ui/button";
-import { UserAvatar } from "./UserAvatar";
+import { useSession } from "next-auth/react";
+
 import AuthCheck from "@/components/AuthCheck";
 import { SignInButton, SignOutButton } from "./buttons";
 

@@ -1,13 +1,13 @@
 import Post from "@/components/post/Post";
 import ProfileHeader from "@/components/ProfileHeader";
 import { getAllPostsByUser, getUserByID } from "@/lib/data";
+import { auth } from "@/auth";
 
 const UserProfile = async ({ params }: { params: { id: string } }) => {
-  console.log("id: ", params.id);
+  const session = await auth();
   const user = await getUserByID(params.id);
   const posts = await getAllPostsByUser(params.id);
 
-  console.log("user: ", user);
   return (
     <main className="max-w-md mx-auto mt-8">
       <ProfileHeader

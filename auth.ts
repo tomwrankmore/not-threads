@@ -9,7 +9,7 @@ const prisma = new PrismaClient();
 export const { handlers, auth } = NextAuth({
   adapter: PrismaAdapter(prisma),
   providers: [GitHub, Google],
-  // Below gives us access to id which connects users and posts in db
+  // Below gives us access to id which connects users and posts in db. It adds id to session object.
   callbacks: {
     async session({session, user}) {
       session.user.id = user.id
