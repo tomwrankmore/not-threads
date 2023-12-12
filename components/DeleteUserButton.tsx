@@ -1,10 +1,10 @@
 // import { useFormStatus } from "react-dom";
 import { Button } from "@/components/ui/button";
 
-const DeleteUserButton = ({handleSubmit}:{handleSubmit: React.Dispatch<React.SetStateAction<boolean>>}) => {
+const DeleteUserButton = () => {
   // const { pending } = useFormStatus();
 
-  return <Button onClick={()=>handleSubmit(false)}>Delete</Button>;
+  return <Button>Delete</Button>;
 };
 
 export default DeleteUserButton;

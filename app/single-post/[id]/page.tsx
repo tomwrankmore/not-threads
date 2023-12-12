@@ -1,4 +1,4 @@
-import Post from "@/components/Post";
+import Post from "@/components/post/Post";
 import { getPostById } from "@/lib/data";
 
 type Params = {

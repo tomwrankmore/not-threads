@@ -1,4 +1,4 @@
-import Post from "@/components/Post";
+import Post from "@/components/post/Post";
 import ProfileHeader from "@/components/ProfileHeader";
 import { getAllPostsByUser, getUserByID } from "@/lib/data";
 

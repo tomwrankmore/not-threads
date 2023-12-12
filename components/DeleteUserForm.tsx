@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import { useState } from "react";
 import { deleteUser } from "@/app/actions/actions";
 import {
@@ -16,29 +16,33 @@ import toast from "react-hot-toast";
 import DeleteUserButton from "./DeleteUserButton";
 import { Button } from "./ui/button";
 
-export default function DeleteUserForm({ userId }: { userId: string }) {
-  const [open, setOpen] = useState(false);
+type DeleteUserFormProps = {
+  userId: string;
+  openDeleteAlert: boolean;
+  setOpenDeleteAlert: React.Dispatch<React.SetStateAction<boolean>>;
+};
+
+export default function DeleteUserForm({
+  userId,
+  openDeleteAlert,
+  setOpenDeleteAlert,
+}: DeleteUserFormProps) {
   const deleteUserWithId = deleteUser.bind(null, userId);
-  
+
   return (
-    <AlertDialog open={open}>
-      <AlertDialogTrigger asChild>
-        <Button variant="ghost" onClick={() => setOpen(true)}>
-          Delete profile
-        </Button>
-      </AlertDialogTrigger>
+    <AlertDialog open={openDeleteAlert} onOpenChange={setOpenDeleteAlert}>
       <AlertDialogContent>
         <AlertDialogHeader>
-          <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
+          <AlertDialogTitle>
+            Are you absolutely sure to DELETE your profile?
+          </AlertDialogTitle>
           <AlertDialogDescription>
             This action cannot be undone. This will permanently delete your
             account and remove your data from our servers.
           </AlertDialogDescription>
         </AlertDialogHeader>
         <AlertDialogFooter>
-          <AlertDialogCancel onClick={() => setOpen(false)}>
-            Cancel
-          </AlertDialogCancel>
+          <AlertDialogCancel>Cancel</AlertDialogCancel>
           <form
             id="deleteUser"
             action={async () => {
@@ -50,10 +54,10 @@ export default function DeleteUserForm({ userId }: { userId: string }) {
               }
             }}
           >
-            <DeleteUserButton handleSubmit={setOpen} />
+            <DeleteUserButton />
           </form>
         </AlertDialogFooter>
       </AlertDialogContent>
     </AlertDialog>
-  )
+  );
 }

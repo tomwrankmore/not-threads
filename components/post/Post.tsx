@@ -1,10 +1,10 @@
-import DeletePostForm from "./DeletePostForm";
+import UpdateDeletePost from "../UpdateDeletePost";
 import { formatDistance } from "date-fns";
-import { auth } from "@/auth";
+// import { auth } from "@/auth";
 import Image from "next/image";
 import Link from "next/link";
 import { PostProps } from "@/lib/types";
-import { PostOptionsDialog } from "./PostOptionDialogue";
+import { auth } from "@/auth";
 
 const Post = async ({
   id,
@@ -39,7 +39,7 @@ const Post = async ({
           </h1>
           <p className="mb-4 text-sm tracking-tight">{content}</p>
         </div>
-        {session?.user?.id === authorId && <DeletePostForm postId={id} />}
+        {session?.user.id === authorId && <UpdateDeletePost postId={id} title={title} content={content} />}
       </div>
       <p className="text-xs text-right">
         <Link href={`/single-post/${id}`}>{distance}</Link>

@@ -4,7 +4,9 @@ import prisma from "@/lib/prisma";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import { getErrorMessage } from "@/lib/getErrorMessage";
-import { PostSchema } from "@/lib/types";
+import { PostSchema, UpdatePostSchema } from "@/lib/types";
+import { useRouter } from 'next/router';
+
 
 export const addPost = async (newPost: unknown) => {
   // Server side Zod validation, parse the object passed from the client.
@@ -41,6 +43,36 @@ export const addPost = async (newPost: unknown) => {
   redirect("/");
 };
 
+export const updatePostContent = async (updatedPost: unknown) => {
+  // Server side Zod validation, parse the object passed from the client.
+  const result = UpdatePostSchema.safeParse(updatedPost);
+  if (!result.success) {
+    let errorMessage = "";
+    result.error.issues.forEach((issue) => {
+      errorMessage = errorMessage + issue.path[0] + ": " + issue.message + ". ";
+    });
+
+    return {
+      error: errorMessage,
+    };
+  }
+
+  try {
+    await prisma.post.update({
+      where: { id: result.data.postId },
+      data: {
+        content: result.data.content,
+      },
+    })
+  } catch (error) {
+    return {
+      error: getErrorMessage(error),
+    };
+  }
+  revalidatePath("/profile");
+  redirect("/profile");
+}
+
 export const deletePost = async (id: string) => {
   try {
     await prisma.post.delete({
@@ -52,8 +84,8 @@ export const deletePost = async (id: string) => {
     };
   }
 
-  revalidatePath("/");
-  redirect("/");
+  revalidatePath("/profile");
+  redirect("/profile");
 };
 
 

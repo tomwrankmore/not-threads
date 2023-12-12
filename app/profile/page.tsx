@@ -1,11 +1,10 @@
 import { auth } from "@/auth";
 import { redirect } from "next/navigation";
-import Post from "../../components/Post";
+import Post from "../../components/post/Post";
 import ProfileHeader from "@/components/ProfileHeader";
 import Link from "next/link";
-import { Button, buttonVariants } from "@/components/ui/button";
+import { buttonVariants } from "@/components/ui/button";
 import { getAllPostsByUser } from "@/lib/data";
-import DeleteUserForm from "@/components/DeleteUserForm";
 
 export default async function ProfilePage() {
   const session = await auth();
@@ -18,11 +17,11 @@ export default async function ProfilePage() {
 
   return (
     <main className="max-w-md mx-auto mt-8">
-      <DeleteUserForm userId={session.user.id} />
       <ProfileHeader
         name={session.user.name!}
         email={session.user.email!}
         image={session.user.image!}
+        id={session.user.id}
       />
       {!posts.length ? (
         <div className="flex items-center justify-between">

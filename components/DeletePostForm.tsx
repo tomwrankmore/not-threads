@@ -1,7 +1,5 @@
 "use client";
-import { useState } from "react";
-import { deletePost } from "@/app/actions/actions";
-import DeletePostButton from "./DeletePostButton";
+import React from "react";
 import toast from "react-hot-toast";
 import {
   AlertDialog,
@@ -14,42 +12,51 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
-import { Button } from "@/components/ui/button";
-import { Trash2 } from "lucide-react";
+import { deletePost } from "@/app/actions/actions";
 
-const DeletePostForm = ({ postId }: { postId: string }) => {
-  const [open, setOpen] = useState(false)
+type DeletePostFormProps = {
+  postId: string;
+  openDeleteAlert: boolean;
+  setOpenDeleteAlert: React.Dispatch<React.SetStateAction<boolean>>;
+};
+
+const DeletePostForm = ({
+  postId,
+  openDeleteAlert,
+  setOpenDeleteAlert,
+}: DeletePostFormProps) => {
+  
   const deletePostWithId = deletePost.bind(null, postId);
 
   return (
-    <AlertDialog open={open}>
-      <AlertDialogTrigger asChild>
-        <Button variant="ghost" onClick={() => setOpen(true)}>
-          <Trash2 />
-        </Button>
-      </AlertDialogTrigger>
+    <AlertDialog open={openDeleteAlert} onOpenChange={setOpenDeleteAlert}>
       <AlertDialogContent>
         <AlertDialogHeader>
-          <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
+          <AlertDialogTitle>
+            Are you absolutely sure to DELETE this post?
+          </AlertDialogTitle>
           <AlertDialogDescription>
             This action cannot be undone. This will permanently delete your
-            account and remove your data from our servers.
+            post from our servers.
           </AlertDialogDescription>
         </AlertDialogHeader>
         <AlertDialogFooter>
-          <AlertDialogCancel onClick={() => setOpen(false)}>Cancel</AlertDialogCancel>
+          <AlertDialogCancel>Cancel</AlertDialogCancel>
           <form
-          id="deletePost"
+            id="deletePost"
             action={async () => {
               const result = await deletePostWithId();
               if (result?.error) {
                 toast.error(result.error);
               } else {
                 toast.success(`Post deleted!`);
+                // setOpenAlert(false);
               }
             }}
           >
-            <DeletePostButton handleSubmit={setOpen} />
+            <AlertDialogAction type="submit" form="deletePost">
+              Yes, delete
+            </AlertDialogAction>
           </form>
         </AlertDialogFooter>
       </AlertDialogContent>

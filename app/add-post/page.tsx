@@ -9,7 +9,7 @@ export default async function AddPost() {
   }
 
   return (
-    <main className="max-w-md mx-auto mt-8">
+    <main className="max-w-md mx-auto mt-2">
       <h1>Add post</h1>
       <p className="text-xs">You are logged in as: {session?.user?.name}</p>
       <AddPostForm userId={session.user.id} />

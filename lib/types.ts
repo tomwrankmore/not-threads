@@ -22,6 +22,19 @@ export const PostSchema = z.object({
     }),
 });
 
+export const UpdatePostSchema = z.object({
+  postId: z.string(),
+  content: z
+    .string()
+    .trim()
+    .min(10, {
+      message: "Content must be at least ten character long",
+    })
+    .max(500, {
+      message: "Content is too long, max 500 characters.",
+    }),
+});
+
 // useful typing:
 export type Post = z.infer<typeof PostSchema>;
 

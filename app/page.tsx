@@ -1,4 +1,4 @@
-import Post from "../components/Post";
+import Post from "../components/post/Post";
 import { getAllPosts } from "@/lib/data";
 
 export default async function Home() {
