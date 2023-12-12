@@ -14,6 +14,7 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
+import { useState } from "react";
 
 type EditPostFormProps = {
   postId: string;
@@ -30,6 +31,9 @@ export default function EditPostForm({
   title,
   content
 }: EditPostFormProps) {
+  const [titleValue, setTitleValue] = useState(title)
+  const [contentValue, setContentValue] = useState(content)
+
   async function clientAction(formData: FormData) {
     // Construct new post object to parse for Zod
     const updatedPost = {
@@ -82,8 +86,9 @@ export default function EditPostForm({
               className="shadow appearance-none border rounded w-full py-2 px-3 leading-tight focus:outline-none focus:shadow-outline"
               id="title"
               type="text"
-              placeholder={title}
+              value={titleValue}
               name="title"
+              onChange={(e)=>setTitleValue(e.target.value)}
             />
           </div>
           <div className="mb-6">
@@ -93,7 +98,8 @@ export default function EditPostForm({
             <textarea
               className="shadow appearance-none border rounded w-full py-2 px-3 leading-tight focus:outline-none focus:shadow-outline"
               id="content"
-              placeholder={content}
+              value={contentValue}
+              onChange={(e)=>setContentValue(e.target.value)}
               name="content"
               required
             ></textarea>

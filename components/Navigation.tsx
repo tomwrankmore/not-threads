@@ -10,6 +10,8 @@ import { signIn, signOut, useSession } from "next-auth/react";
 import Image from "next/image";
 import { Button } from "./ui/button";
 import { UserAvatar } from "./UserAvatar";
+import AuthCheck from "@/components/AuthCheck";
+import { SignInButton, SignOutButton } from "./buttons";
 
 export function Navigation() {
   const { data: session, status } = useSession();
@@ -21,7 +23,7 @@ export function Navigation() {
       <div className="flex-1 flex items-center justify-start gap-4">
         <ul className="flex gap-4">
           <li>
-            <Link href="/">
+            <Link href="/all-posts">
               <Home />
             </Link>
           </li>
@@ -37,29 +39,10 @@ export function Navigation() {
       </div>
       <div className="flex-1 flex items-center justify-end gap-4">
         <ModeToggle />
-        {!session?.user ? (
-          <Button
-            onClick={() => signIn()}
-            variant={"outline"}
-          >
-            Sign in
-          </Button>
-        ) : (
-          <Button
-            variant={"outline"}
-            onClick={() => signOut({ callbackUrl: "/" })}
-          >
-            Sign out
-          </Button>
-        )}
-        {session?.user && (
-          <Link href="/profile">
-            <UserAvatar
-              image={session?.user?.image!}
-              name={session?.user?.name!}
-            />
-          </Link>
-        )}
+        <AuthCheck>
+          <SignOutButton />
+        </AuthCheck>
+        <SignInButton />
       </div>
     </nav>
   );

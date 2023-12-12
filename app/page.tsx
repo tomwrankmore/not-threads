@@ -6,7 +6,7 @@ export default async function Home() {
   return (
     <main className="max-w-md mx-auto mt-8">
       <div>
-        <h1 className="scroll-m-20 text-xl font-bold mb-4">All Posts!</h1>
+        <h1 className="scroll-m-20 text-xl mb-4">All Posts!</h1>
       </div>
       <div className="mb-4">
         {posts.map((post, idx) => {
