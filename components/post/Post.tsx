@@ -1,6 +1,5 @@
 import UpdateDeletePost from "../UpdateDeletePost";
 import { formatDistance } from "date-fns";
-// import { auth } from "@/auth";
 import Image from "next/image";
 import Link from "next/link";
 import { PostProps } from "@/lib/types";

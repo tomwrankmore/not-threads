@@ -5,8 +5,7 @@ import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import { getErrorMessage } from "@/lib/getErrorMessage";
 import { PostSchema, UpdatePostSchema } from "@/lib/types";
-import { useRouter } from 'next/router';
-
+import { useRouter } from "next/router";
 
 export const addPost = async (newPost: unknown) => {
   // Server side Zod validation, parse the object passed from the client.
@@ -28,7 +27,7 @@ export const addPost = async (newPost: unknown) => {
         title: result.data.title as string,
         content: result.data.content as string,
         published: true,
-        authorId: result.data.authorId
+        authorId: result.data.authorId,
       },
     });
   } catch (error) {
@@ -63,7 +62,7 @@ export const updatePostContent = async (updatedPost: unknown) => {
       data: {
         content: result.data.content,
       },
-    })
+    });
   } catch (error) {
     return {
       error: getErrorMessage(error),
@@ -71,7 +70,7 @@ export const updatePostContent = async (updatedPost: unknown) => {
   }
   revalidatePath("/profile");
   redirect("/profile");
-}
+};
 
 export const deletePost = async (id: string) => {
   try {
@@ -88,11 +87,10 @@ export const deletePost = async (id: string) => {
   redirect("/profile");
 };
 
-
 export const deleteUser = async (id: string) => {
   try {
     await prisma.user.delete({
-      where: {id},
+      where: { id },
     });
   } catch (error) {
     return {
@@ -102,4 +100,48 @@ export const deleteUser = async (id: string) => {
 
   revalidatePath("/");
   redirect("/");
-}
+};
+
+export const followUser = async (
+  targetUserId: string,
+  currentUserId: string
+) => {
+  try {
+    await prisma.follows.create({
+      data: {
+        followerId: currentUserId,
+        followingId: targetUserId,
+      },
+    });
+  } catch (error) {
+    return {
+      error: getErrorMessage(error),
+    };
+  }
+
+  revalidatePath(`/user-profile/${targetUserId}`);
+  redirect(`/user-profile/${targetUserId}`);
+};
+
+export const unfollowUser = async (
+  targetUserId: string,
+  currentUserId: string
+) => {
+  try {
+    await prisma.follows.delete({
+      where: {
+        followerId_followingId: {
+          followerId: currentUserId,
+          followingId: targetUserId,
+        }
+      }
+    });
+  } catch (error) {
+    return {
+      error: getErrorMessage(error),
+    };
+  }
+
+  revalidatePath(`/user-profile/${targetUserId}`);
+  redirect(`/user-profile/${targetUserId}`);
+};

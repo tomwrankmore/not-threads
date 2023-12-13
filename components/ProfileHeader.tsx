@@ -12,15 +12,17 @@ import { Edit2, Trash2 } from "lucide-react";
 import { Button } from "./ui/button";
 import { useState } from "react";
 import { usePathname } from "next/navigation";
+import FollowButton from "@/components/FollowButton";
 
 type ProfileHeaderProps = {
+  children?: React.ReactNode;
   name: string;
   email: string;
   image: string;
   id: string;
 };
 
-const ProfileHeader = ({ name, email, image, id }: ProfileHeaderProps) => {
+const ProfileHeader = ({ children, name, email, image, id }: ProfileHeaderProps) => {
   const [openDeleteAlert, setOpenDeleteAlert] = useState(false);
   const pathname = usePathname();
   return (
@@ -38,6 +40,7 @@ const ProfileHeader = ({ name, email, image, id }: ProfileHeaderProps) => {
         <div>
           <h2 className="text-xl font-semibold">{name}</h2>
           <p className="text-xs">{email}</p>
+          {children}
         </div>
         <div className="flex justify-between pb-4 mb-4">
           {pathname === "/profile" ? (
@@ -50,7 +53,7 @@ const ProfileHeader = ({ name, email, image, id }: ProfileHeaderProps) => {
                   <DropdownMenuGroup>
                     <DropdownMenuItem onClick={() => setOpenDeleteAlert(true)}>
                       <Trash2 className="mr-2 h-4 w-4" />
-                      <span>Delete</span>
+                      <span>Delete Profile</span>
                       {/* <DropdownMenuShortcut>⌘D</DropdownMenuShortcut> */}
                     </DropdownMenuItem>
                   </DropdownMenuGroup>

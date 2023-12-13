@@ -43,6 +43,8 @@ model User {
   accounts      Account[]
   posts         Post[]
   sessions      Session[]
+  followedBy    Follows[] @relation("following")
+  following     Follows[] @relation("follower")
 }
 
 model VerificationToken {
@@ -61,4 +63,13 @@ model Post {
   published   Boolean  @default(false)
   authorId    String?
   author      User?    @relation(fields: [authorId], references: [id], onDelete: Cascade)
+}
+
+model Follows {
+  follower    User @relation("follower", fields: [followerId], references: [id])
+  followerId  String
+  following   User @relation("following", fields: [followingId], references: [id])
+  followingId String
+
+  @@id([followerId, followingId])
 }
