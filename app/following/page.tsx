@@ -24,7 +24,7 @@ const Following = async () => {
   return (
     <PageWrapper>
       <div className="flex items-center justify-between mb-4">
-        <h1 className="scroll-m-20 text-xl">Following!</h1>
+        <h1 className="scroll-m-20 text-xl">All post by users you are following</h1>
         <Link
           href="/all-posts"
           className={buttonVariants({ variant: "outline" })}
