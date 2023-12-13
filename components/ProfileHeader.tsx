@@ -39,7 +39,7 @@ const ProfileHeader = ({ children, name, email, image, id }: ProfileHeaderProps)
       <div className="flex justify-between pb-4 mb-4">
         <div>
           <h2 className="text-xl font-semibold">{name}</h2>
-          <p className="text-xs">{email}</p>
+          {/* <p className="text-xs">{email}</p> */}
           {children}
         </div>
         <div className="flex justify-between pb-4 mb-4">
