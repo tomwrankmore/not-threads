@@ -5,12 +5,13 @@ import { auth } from "@/auth";
 import Post from "@/components/post/Post";
 import AuthCheck from "@/components/AuthCheck";
 import { redirect } from "next/navigation";
+import Link from "next/link";
 
 const Following = async () => {
   const session = await auth();
 
   if (!session?.user) {
-    redirect("/api/auth/signin?callbackUrl=/following");
+    redirect("/api/auth/signin?callbackUrl=/");
   }
 
   const id = session?.user.id!;
@@ -22,7 +23,15 @@ const Following = async () => {
   const postsByFollowedUsers = await getPostsByFollowedUsers(followedUserIds);
   return (
     <PageWrapper>
-      <h1>Posts by users you follow:</h1>
+      <div className="flex items-center justify-between mb-4">
+        <h1 className="scroll-m-20 text-xl">Following!</h1>
+        <Link
+          href="/all-posts"
+          className={buttonVariants({ variant: "outline" })}
+        >
+          All posts
+        </Link>
+      </div>
       <AuthCheck>
         {postsByFollowedUsers.length ? (
           postsByFollowedUsers.map((post) => {
@@ -42,7 +51,6 @@ const Following = async () => {
           <p>Nothing to see here!</p>
         )}
       </AuthCheck>
-      
     </PageWrapper>
   );
 };

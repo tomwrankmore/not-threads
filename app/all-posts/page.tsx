@@ -11,8 +11,8 @@ export default async function Home() {
   const posts = await getAllPosts();
   return (
     <PageWrapper>
-      <div>
-        <h1 className="scroll-m-20 text-xl mb-4">All Posts!</h1>
+      <div className="flex items-center justify-between mb-4">
+        <h1 className="scroll-m-20 text-xl">All Posts!</h1>
         <AuthCheck>
           <Link
             href="/following"
