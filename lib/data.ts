@@ -38,6 +38,24 @@ export async function getAllPostsByUser(id: string) {
   return posts;
 }
 
+export async function getFollowedUsers(id: string) {
+  const user = await prisma.user.findUnique({
+    where: { id },
+    include: {
+      following: true,
+    },
+  });
+  return user;
+}
+
+export async function getPostsByFollowedUsers(followedUserIds: string[] | undefined) {
+  const posts = await prisma.post.findMany({
+    where: {authorId: {in: followedUserIds }},
+    include: {author: true}
+  });
+  return posts;
+}
+
 export async function getUserByID(id: string) {
   const user = await prisma.user.findUnique({
     where: { id },
