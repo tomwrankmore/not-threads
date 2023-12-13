@@ -5,12 +5,14 @@ import Image from "next/image";
 import Link from "next/link";
 import { UserAvatar } from "./UserAvatar";
 import { Button } from "./ui/button";
+import { Loader2 } from "lucide-react";
+import LoadingSpinner from "./LoadingSpinner";
 
 export function SignInButton() {
   const { data: session, status } = useSession();
 
   if (status === "loading") {
-    return <>...</>;
+    return <LoadingSpinner />;
   }
   if (status === "authenticated") {
     return (
@@ -28,7 +30,7 @@ export function SignInButton() {
 
 export function SignOutButton() {
   return (
-    <Button variant="outline" onClick={() => signOut()}>
+    <Button variant="outline" onClick={() => signOut({ callbackUrl: '/' })}>
       Sign Out
     </Button>
   );

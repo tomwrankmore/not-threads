@@ -1,7 +1,5 @@
-
 import { auth } from "@/auth";
 import prisma from "@/lib/prisma";
-import { Button } from "./ui/button";
 import FollowClient from "./FollowClient";
 
 const FollowButton = async ({ targetUserId }: { targetUserId: string }) => {

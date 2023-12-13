@@ -1,6 +1,6 @@
 "use client";
 
-import { addPost } from "@/app/actions/actions";
+import { addPost } from "@/lib/actions/actions";
 import AddPostButton from "./AddPostButton";
 import { toast } from "react-hot-toast";
 import { PostSchema } from "@/lib/types";
@@ -9,7 +9,7 @@ export default function AddPostForm({ userId }: { userId: string }) {
   async function clientAction(formData: FormData) {
     // Construct new post object to parse for Zod
     const newPost = {
-      title: formData.get("title") as string,
+      // title: formData.get("title") as string,
       content: formData.get("content") as string,
       authorId: userId,
     };
@@ -33,13 +33,13 @@ export default function AddPostForm({ userId }: { userId: string }) {
     if (response?.error) {
       toast.error(response.error);
     } else {
-      toast.success(`"${formData.get("title")}" is now live!`);
+      toast.success(`Success!`);
     }
   }
 
   return (
     <form action={clientAction} className="mt-8">
-      <div className="mb-4">
+      {/* <div className="mb-4">
         <label
           className="block text-sm font-bold mb-2"
           htmlFor="title"
@@ -53,7 +53,7 @@ export default function AddPostForm({ userId }: { userId: string }) {
           placeholder="Enter title"
           name="title"
         />
-      </div>
+      </div> */}
       <div className="mb-6">
         <label
           className="block text-sm font-bold mb-2"

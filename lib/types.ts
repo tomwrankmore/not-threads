@@ -2,15 +2,15 @@ import { z } from "zod";
 
 export const PostSchema = z.object({
   authorId: z.string(),
-  title: z
-    .string()
-    .trim()
-    .min(3, {
-      message: "Title must be at least three character",
-    })
-    .max(100, {
-      message: "Title is too long, 100 characters max.",
-    }),
+  // title: z
+  //   .string()
+  //   .trim()
+  //   .min(3, {
+  //     message: "Title must be at least three character",
+  //   })
+  //   .max(100, {
+  //     message: "Title is too long, 100 characters max.",
+  //   }),
   content: z
     .string()
     .trim()
@@ -40,7 +40,7 @@ export type Post = z.infer<typeof PostSchema>;
 
 export type PostProps = {
   id: string;
-  title: string;
+  // title: string;
   content: string;
   author: { name: string | null; image: string | null };
   publishedAt: Date;

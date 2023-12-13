@@ -57,7 +57,7 @@ model VerificationToken {
 
 model Post {
   id          String   @id @default(cuid())
-  title       String
+  title       String?
   content     String?
   publishedAt DateTime @default(now())
   published   Boolean  @default(false)

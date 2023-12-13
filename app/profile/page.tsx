@@ -39,7 +39,7 @@ export default async function ProfilePage() {
             <Post
               key={post.id}
               id={post.id}
-              title={post.title}
+              // title={post.title}
               content={post.content!}
               author={post?.author!}
               publishedAt={post?.publishedAt}

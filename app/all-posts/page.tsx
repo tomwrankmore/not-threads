@@ -29,7 +29,7 @@ export default async function Home() {
               <Post
                 key={post.id}
                 id={post.id}
-                title={post.title}
+                // title={post.title}
                 content={post.content!}
                 author={post?.author!}
                 publishedAt={post?.publishedAt}

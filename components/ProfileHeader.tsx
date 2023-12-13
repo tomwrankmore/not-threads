@@ -25,9 +25,10 @@ type ProfileHeaderProps = {
 const ProfileHeader = ({ children, name, email, image, id }: ProfileHeaderProps) => {
   const [openDeleteAlert, setOpenDeleteAlert] = useState(false);
   const pathname = usePathname();
+
   return (
     <>
-      {/* only render if passed is equal to session id. */}
+      {/* only render if we are on profile page which is auth protected. */}
       {pathname === "/profile" && (
         <DeleteUserForm
           userId={id}
@@ -39,7 +40,7 @@ const ProfileHeader = ({ children, name, email, image, id }: ProfileHeaderProps)
       <div className="flex justify-between pb-4 mb-4">
         <div>
           <h2 className="text-xl font-semibold">{name}</h2>
-          {/* <p className="text-xs">{email}</p> */}
+          {/* children represents follow <FollowButton targetUserId={params.id} /> which is child in profile and user-profile  */}
           {children}
         </div>
         <div className="flex justify-between pb-4 mb-4">

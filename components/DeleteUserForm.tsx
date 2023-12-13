@@ -1,5 +1,5 @@
 "use client";
-import { deleteUser } from "@/app/actions/actions";
+import { deleteUser } from "@/lib/actions/actions";
 import {
   AlertDialog,
   AlertDialogAction,

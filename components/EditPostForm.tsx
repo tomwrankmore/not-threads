@@ -1,6 +1,6 @@
 "use client";
 
-import { updatePostContent } from "@/app/actions/actions";
+import { updatePostContent } from "@/lib/actions/actions";
 import AddPostButton from "./AddPostButton";
 import { toast } from "react-hot-toast";
 import { UpdatePostSchema } from "@/lib/types";
@@ -20,7 +20,7 @@ type EditPostFormProps = {
   postId: string;
   openEditAlert: boolean;
   setOpenEditAlert: React.Dispatch<React.SetStateAction<boolean>>;
-  title: string;
+  // title: string;
   content: string;
 };
 
@@ -28,10 +28,10 @@ export default function EditPostForm({
   postId,
   openEditAlert,
   setOpenEditAlert,
-  title,
+  // title,
   content
 }: EditPostFormProps) {
-  const [titleValue, setTitleValue] = useState(title)
+  // const [titleValue, setTitleValue] = useState(title)
   const [contentValue, setContentValue] = useState(content)
 
   async function clientAction(formData: FormData) {
@@ -61,7 +61,7 @@ export default function EditPostForm({
     if (response?.error) {
       toast.error(response.error);
     } else {
-      toast.success(`"${formData.get("title")}" is now live!`);
+      toast.success(`Success!`);
     }
   }
 
@@ -78,7 +78,7 @@ export default function EditPostForm({
           </DialogDescription>
         </DialogHeader>
         <form action={clientAction} className="mt-2" id="editPostForm">
-          <div className="mb-4">
+          {/* <div className="mb-4">
             <label className="block text-sm font-bold mb-2" htmlFor="title">
               Title:
             </label>
@@ -90,7 +90,7 @@ export default function EditPostForm({
               name="title"
               onChange={(e)=>setTitleValue(e.target.value)}
             />
-          </div>
+          </div> */}
           <div className="mb-6">
             <label className="block text-sm font-bold mb-2" htmlFor="content">
               Content:

@@ -11,7 +11,7 @@ export default async function SinglePost({ params }: { params: Params }) {
     <main className="max-w-md mx-auto mt-8">
       <Post
         id={post?.id!}
-        title={post?.title!}
+        // title={post?.title!}
         content={post?.content!}
         author={post?.author!}
         key={post?.id}

@@ -4,10 +4,11 @@ import Image from "next/image";
 import Link from "next/link";
 import { PostProps } from "@/lib/types";
 import { auth } from "@/auth";
+import FollowButton from "@/components/FollowButton";
 
 const Post = async ({
   id,
-  title,
+  // title,
   content,
   author,
   publishedAt,
@@ -38,7 +39,11 @@ const Post = async ({
           </h1>
           <p className="mb-4 text-sm tracking-tight">{content}</p>
         </div>
-        {session?.user.id === authorId && <UpdateDeletePost postId={id} title={title} content={content} />}
+        
+        {session?.user.id === authorId && <UpdateDeletePost postId={id} content={content} />}
+
+        <FollowButton targetUserId={authorId}/>
+      
       </div>
       <p className="text-xs text-right">
         <Link href={`/single-post/${id}`}>{distance}</Link>

@@ -23,7 +23,7 @@ const UserProfile = async ({ params }: { params: { id: string } }) => {
           <Post
             key={post.id}
             id={post.id}
-            title={post.title}
+            // title={post.title}
             content={post.content!}
             author={post?.author!}
             publishedAt={post?.publishedAt}

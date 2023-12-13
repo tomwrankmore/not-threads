@@ -24,7 +24,7 @@ export const addPost = async (newPost: unknown) => {
   try {
     await prisma.post.create({
       data: {
-        title: result.data.title as string,
+        title: '',
         content: result.data.content as string,
         published: true,
         authorId: result.data.authorId,
@@ -119,8 +119,9 @@ export const followUser = async (
     };
   }
 
-  revalidatePath(`/user-profile/${targetUserId}`);
-  redirect(`/user-profile/${targetUserId}`);
+  // revalidatePath(`/user-profile/${targetUserId}`);
+  // revalidatePath(`/all-posts/`);
+  // redirect(`/user-profile/${targetUserId}`);
 };
 
 export const unfollowUser = async (
@@ -142,6 +143,6 @@ export const unfollowUser = async (
     };
   }
 
-  revalidatePath(`/user-profile/${targetUserId}`);
-  redirect(`/user-profile/${targetUserId}`);
+  // revalidatePath(`/user-profile/${targetUserId}`);
+  // redirect(`/user-profile/${targetUserId}`);
 };

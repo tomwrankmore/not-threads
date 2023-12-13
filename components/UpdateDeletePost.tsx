@@ -15,11 +15,10 @@ import EditPostForm from "./EditPostForm";
 
 type UpdateDeletePost = {
   postId: string;
-  title: string;
   content: string;
 }
 
-const UpdateDeletePost = ({ postId, title, content }: UpdateDeletePost) => {
+const UpdateDeletePost = ({ postId, content }: UpdateDeletePost) => {
   const [openDeleteAlert, setOpenDeleteAlert] = useState(false);
   const [openEditAlert, setOpenEditAlert] = useState(false);
 
@@ -35,7 +34,7 @@ const UpdateDeletePost = ({ postId, title, content }: UpdateDeletePost) => {
         postId={postId}
         openEditAlert={openEditAlert}
         setOpenEditAlert={setOpenEditAlert}
-        title={title}
+        // title={title}
         content={content}
       />
 

@@ -12,7 +12,7 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
-import { deletePost } from "@/app/actions/actions";
+import { deletePost } from "@/lib/actions/actions";
 
 type DeletePostFormProps = {
   postId: string;
