@@ -11,13 +11,10 @@ const FollowButton = async ({ targetUserId }: { targetUserId: string }) => {
     .findFirst({ where: { email: session?.user?.email! } })
     .then((user) => user?.id!);
 
-  console.log("currentUserId: ", currentUserId);
-  console.log("targetUserId: ", targetUserId);
   const isFollowing = await prisma.follows.findFirst({
     where: { followerId: currentUserId, followingId: targetUserId },
   });
 
-  console.log("isFollowing: ", !!isFollowing);
   return <FollowClient currentUserId={currentUserId} targetUserId={targetUserId} isFollowing={!!isFollowing} />;
   };
 

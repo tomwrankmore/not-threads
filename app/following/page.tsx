@@ -13,7 +13,6 @@ const Following = async () => {
   );
 
   const postsByFollowedUsers = await getPostsByFollowedUsers(followedUserIds);
-  console.log("postsByFollowedUsers: ", postsByFollowedUsers);
   return (
     <PageWrapper>
       <h1>Posts by users you follow:</h1>

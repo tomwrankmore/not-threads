@@ -5,6 +5,7 @@ import Loading from "./loading";
 import PageWrapper from "@/components/PageWrapper";
 import Link from "next/link";
 import { buttonVariants } from "@/components/ui/button";
+import AuthCheck from "@/components/AuthCheck";
 
 export default async function Home() {
   const posts = await getAllPosts();
@@ -12,12 +13,14 @@ export default async function Home() {
     <PageWrapper>
       <div>
         <h1 className="scroll-m-20 text-xl mb-4">All Posts!</h1>
-        <Link
-          href="/following"
-          className={buttonVariants({ variant: "outline" })}
-        >
-          Filter users you follow
-        </Link>
+        <AuthCheck>
+          <Link
+            href="/following"
+            className={buttonVariants({ variant: "outline" })}
+          >
+            Filter users you follow
+          </Link>
+        </AuthCheck>
       </div>
       <div className="mb-4">
         <Suspense fallback={<Loading />}>
