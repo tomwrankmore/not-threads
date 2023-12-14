@@ -35,7 +35,7 @@ export const addPost = async (newPost: unknown) => {
     };
   }
 
-  // Use this getErrorMessage util fn because you don't really know what the error will be and Typescript will complain if you try return error.message.
+  // Use this getErrorMessage until fn because you don't really know what the error will be and Typescript will complain if you try return error.message.
 
   revalidatePath("/");
   redirect("/");

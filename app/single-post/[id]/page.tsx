@@ -20,6 +20,6 @@ export default async function SinglePost({ params }: { params: Params }) {
         publishedAt={post?.publishedAt!}
         showFollowButton={false}
       />
-    </main>
+    </PageWrapper>
   );
 }

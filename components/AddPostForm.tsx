@@ -39,21 +39,6 @@ export default function AddPostForm({ userId }: { userId: string }) {
 
   return (
     <form action={clientAction} className="mt-8">
-      {/* <div className="mb-4">
-        <label
-          className="block text-sm font-bold mb-2"
-          htmlFor="title"
-        >
-          Title:
-        </label>
-        <input
-          className="shadow appearance-none border rounded w-full py-2 px-3 leading-tight focus:outline-none focus:shadow-outline"
-          id="title"
-          type="text"
-          placeholder="Enter title"
-          name="title"
-        />
-      </div> */}
       <div className="mb-6">
         <label
           className="block text-sm font-bold mb-2"
