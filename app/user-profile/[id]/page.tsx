@@ -1,3 +1,4 @@
+import PageWrapper from "@/components/PageWrapper";
 import Post from "@/components/post/Post";
 import ProfileHeader from "@/components/ProfileHeader";
 import { getAllPostsByUser, getUserByID } from "@/lib/data";
@@ -7,7 +8,7 @@ const UserProfile = async ({ params }: { params: { id: string } }) => {
   const posts = await getAllPostsByUser(params.id);
 
   return (
-    <main className="max-w-md mx-auto mt-8">
+    <PageWrapper>
       <ProfileHeader
         name={user?.name!}
         email={user?.email!}
@@ -27,7 +28,7 @@ const UserProfile = async ({ params }: { params: { id: string } }) => {
           />
         );
       })}
-    </main>
+    </PageWrapper>
   );
 };
 

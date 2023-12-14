@@ -3,7 +3,7 @@ type Props = {
 };
 const PageWrapper = ({children}:Props) => {
   return (
-    <main className="max-w-md mx-auto mt-8">{children}</main>
+    <main className="max-w-md mx-auto mt-8 p-4">{children}</main>
   )
 }
 

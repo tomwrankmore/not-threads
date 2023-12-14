@@ -5,6 +5,7 @@ import ProfileHeader from "@/components/ProfileHeader";
 import Link from "next/link";
 import { buttonVariants } from "@/components/ui/button";
 import { getAllPostsByUser } from "@/lib/data";
+import PageWrapper from "@/components/PageWrapper";
 
 export default async function ProfilePage() {
   const session = await auth();
@@ -16,7 +17,7 @@ export default async function ProfilePage() {
   const posts = await getAllPostsByUser(session.user.id);
 
   return (
-    <main className="max-w-md mx-auto mt-8">
+    <PageWrapper>
       <ProfileHeader
         name={session.user.name!}
         email={session.user.email!}
@@ -48,6 +49,6 @@ export default async function ProfilePage() {
           );
         })
       )}
-    </main>
+    </PageWrapper>
   );
 }

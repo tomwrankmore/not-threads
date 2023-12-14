@@ -1,3 +1,4 @@
+import PageWrapper from "@/components/PageWrapper";
 import Post from "@/components/post/Post";
 import { getPostById } from "@/lib/data";
 
@@ -8,7 +9,7 @@ type Params = {
 export default async function SinglePost({ params }: { params: Params }) {
   const post = await getPostById(params.id);
   return (
-    <main className="max-w-md mx-auto mt-8">
+    <PageWrapper>
       <Post
         id={post?.id!}
         // title={post?.title!}
