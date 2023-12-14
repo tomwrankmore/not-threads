@@ -10,7 +10,7 @@ import { addFavourite, removeFavourite } from "@/lib/actions/actions";
 type FavouriteButtonClientProps = {
   userId: string;
   postId: string;
-  isFavourited: string;
+  isFavourited: boolean;
 };
 
 const FavouriteButtonClient = ({

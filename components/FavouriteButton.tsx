@@ -12,7 +12,7 @@ const FavouriteButton = async  ({targetPostId}:{targetPostId:string}) => {
     where: { userId: currentUserId, postId: targetPostId },
   });
 
-  return <FavouriteButtonClient userId={currentUserId} postId={targetPostId} isFavourited={isFavourited} />;
+  return <FavouriteButtonClient userId={currentUserId} postId={targetPostId} isFavourited={!!isFavourited} />;
 };
 
 export default FavouriteButton;
