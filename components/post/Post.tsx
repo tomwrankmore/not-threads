@@ -6,6 +6,7 @@ import { PostProps } from "@/lib/types";
 import { auth } from "@/auth";
 import FollowButton from "@/components/FollowButton";
 import FavouriteButton from "../FavouriteButton";
+import AuthCheck from "../AuthCheck";
 const Post = async ({
   id,
   content,
@@ -63,7 +64,9 @@ const Post = async ({
           {session && session?.user.id != authorId && showFollowButton && (
             <FollowButton targetUserId={authorId} />
           )}
-          <FavouriteButton targetPostId={id}/>
+          <AuthCheck>
+            <FavouriteButton targetPostId={id} />
+          </AuthCheck>
         </div>
       </div>
       <p className="text-xs text-right">
