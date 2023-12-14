@@ -83,7 +83,7 @@ export const deletePost = async (id: string) => {
   }
 
   revalidatePath("/profile");
-  redirect("/profile");
+  // redirect("/profile");
 };
 
 export const deleteUser = async (id: string) => {
