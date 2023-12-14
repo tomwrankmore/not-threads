@@ -1,8 +1,6 @@
 import Post from "@/components/post/Post";
 import ProfileHeader from "@/components/ProfileHeader";
 import { getAllPostsByUser, getUserByID } from "@/lib/data";
-import { auth } from "@/auth";
-import FollowButton from "@/components/FollowButton";
 
 const UserProfile = async ({ params }: { params: { id: string } }) => {
   const user = await getUserByID(params.id);
@@ -15,15 +13,12 @@ const UserProfile = async ({ params }: { params: { id: string } }) => {
         email={user?.email!}
         image={user?.image!}
         id={user?.id!}
-      >
-        <FollowButton targetUserId={params.id} />
-      </ProfileHeader>
+      />
       {posts.map((post, idx) => {
         return (
           <Post
             key={post.id}
             id={post.id}
-            // title={post.title}
             content={post.content!}
             author={post?.author!}
             publishedAt={post?.publishedAt}

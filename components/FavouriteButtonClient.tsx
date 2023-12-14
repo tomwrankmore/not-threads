@@ -48,9 +48,9 @@ const FavouriteButtonClient = ({
           <Button
             variant="link"
             disabled={isMutating}
-            className="hover:animate-pulse"
+            
           >
-            {!isMutating ? <Heart color="#ff0000" fill="#ff0000" /> : <LoadingSpinner />}
+            {!isMutating ? <Heart className="stroke-rose-700 hover:stroke-gray-400 fill-rose-700 hover:fill-none" /> : <LoadingSpinner />}
           </Button>
         </form>
       ) : (
@@ -72,9 +72,9 @@ const FavouriteButtonClient = ({
           <Button
             variant="link"
             disabled={isMutating}
-            className="hover:animate-pulse"
+            className= "text-white hover:text-gray-400"
           >
-            {!isMutating ? <Heart strokeWidth={0.5} /> : <LoadingSpinner />}
+            {!isMutating ? <Heart/> : <LoadingSpinner />}
           </Button>
         </form>
       )}

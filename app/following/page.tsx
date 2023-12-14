@@ -3,9 +3,9 @@ import { buttonVariants } from "@/components/ui/button";
 import { getFollowedUsers, getPostsByFollowedUsers } from "@/lib/data";
 import { auth } from "@/auth";
 import Post from "@/components/post/Post";
-import AuthCheck from "@/components/AuthCheck";
 import { redirect } from "next/navigation";
 import Link from "next/link";
+import { Undo2 } from "lucide-react";
 
 const Following = async () => {
   const session = await auth();
@@ -29,17 +29,15 @@ const Following = async () => {
           href="/all-posts"
           className={buttonVariants({ variant: "ghost" })}
         >
-          All posts
+          <span className="mr-2">All posts</span><Undo2 />
         </Link>
       </div>
-      <AuthCheck>
         {postsByFollowedUsers.length ? (
           postsByFollowedUsers.map((post) => {
             return (
               <Post
                 key={post.id}
                 id={post.id}
-                // title={post.title}
                 content={post.content!}
                 author={post?.author!}
                 publishedAt={post?.publishedAt}
@@ -51,7 +49,6 @@ const Following = async () => {
         ) : (
           <p>Nothing to see here!</p>
         )}
-      </AuthCheck>
     </PageWrapper>
   );
 };

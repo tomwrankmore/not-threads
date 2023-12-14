@@ -6,6 +6,7 @@ import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
 import { useState, useTransition } from "react";
 import LoadingSpinner from "./LoadingSpinner";
+import { UserPlus, UserX } from "lucide-react";
 
 type FollowClientProps = {
   targetUserId: string;
@@ -49,7 +50,7 @@ export default function FollowClient({
             });
           }}
         >
-          <Button variant="outline" disabled={isMutating}>{!isMutating ? "Unfollow" : <LoadingSpinner />}</Button>
+          <Button variant="link" disabled={isMutating} className="text-white hover:text-gray-400">{!isMutating ? <UserX /> : <LoadingSpinner />}</Button>
         </form>
       ) : (
         <form
@@ -67,7 +68,7 @@ export default function FollowClient({
             });
           }}
         >
-          <Button variant="outline" disabled={isMutating}>{!isMutating ? "Follow" : <LoadingSpinner />}</Button>
+          <Button variant="link" disabled={isMutating} className="text-white hover:text-gray-400">{!isMutating ? <UserPlus /> : <LoadingSpinner />}</Button>
         </form>
       )}
     </>

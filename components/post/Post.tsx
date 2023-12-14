@@ -63,9 +63,7 @@ const Post = async ({
           {session && session?.user.id != authorId && showFollowButton && (
             <FollowButton targetUserId={authorId} />
           )}
-          {session?.user.id != authorId && (
-            <FavouriteButton targetPostId={id}/>
-          )}
+          <FavouriteButton targetPostId={id}/>
         </div>
       </div>
       <p className="text-xs text-right">

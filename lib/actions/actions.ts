@@ -5,7 +5,6 @@ import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import { getErrorMessage } from "@/lib/getErrorMessage";
 import { PostSchema, UpdatePostSchema } from "@/lib/types";
-import { useRouter } from "next/router";
 
 export const addPost = async (newPost: unknown) => {
   // Server side Zod validation, parse the object passed from the client.
@@ -68,8 +67,8 @@ export const updatePostContent = async (updatedPost: unknown) => {
       error: getErrorMessage(error),
     };
   }
-  revalidatePath("/profile");
-  redirect("/profile");
+  revalidatePath("/all-posts");
+  // redirect("/all-posts");
 };
 
 export const deletePost = async (id: string) => {
