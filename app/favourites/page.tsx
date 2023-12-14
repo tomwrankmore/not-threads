@@ -1,40 +1,36 @@
 import PageWrapper from "@/components/PageWrapper";
 import { buttonVariants } from "@/components/ui/button";
-import { getFollowedUsers, getPostsByFollowedUsers } from "@/lib/data";
+import { getFavouritePosts, getFollowedUsers, getPostsByFollowedUsers } from "@/lib/data";
 import { auth } from "@/auth";
 import Post from "@/components/post/Post";
 import AuthCheck from "@/components/AuthCheck";
 import { redirect } from "next/navigation";
 import Link from "next/link";
 
-const Following = async () => {
+const FavouritePosts = async () => {
   const session = await auth();
 
   if (!session?.user) {
     redirect("/api/auth/signin?callbackUrl=/");
   }
 
-  const id = session?.user.id!;
-  const followedUsers = await getFollowedUsers(id);
-  const followedUserIds = followedUsers?.following.map(
-    (user) => user.followingId
-  );
+  const userId = session?.user.id!;
 
-  const postsByFollowedUsers = await getPostsByFollowedUsers(followedUserIds);
+  const favouritePosts = await getFavouritePosts(userId);
+
   return (
     <PageWrapper>
       <div className="flex items-center justify-between mb-4">
-        <h1 className="scroll-m-20 text-xl">Latest from users you follow</h1>
+        <h1 className="scroll-m-20 text-xl">Your faves</h1>
         <Link
           href="/all-posts"
-          className={buttonVariants({ variant: "ghost" })}
+          className={buttonVariants({ variant: "outline" })}
         >
           All posts
         </Link>
       </div>
-      <AuthCheck>
-        {postsByFollowedUsers.length ? (
-          postsByFollowedUsers.map((post) => {
+        {favouritePosts.length ? (
+          favouritePosts.map((post) => {
             return (
               <Post
                 key={post.id}
@@ -44,16 +40,15 @@ const Following = async () => {
                 author={post?.author!}
                 publishedAt={post?.publishedAt}
                 authorId={post?.authorId!}
-                showFollowButton={true}
+                showFollowButton={false}
               />
             );
           })
         ) : (
           <p>Nothing to see here!</p>
         )}
-      </AuthCheck>
     </PageWrapper>
   );
 };
 
-export default Following;
+export default FavouritePosts;

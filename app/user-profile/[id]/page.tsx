@@ -28,6 +28,7 @@ const UserProfile = async ({ params }: { params: { id: string } }) => {
             author={post?.author!}
             publishedAt={post?.publishedAt}
             authorId={post?.authorId!}
+            showFollowButton={false}
           />
         );
       })}

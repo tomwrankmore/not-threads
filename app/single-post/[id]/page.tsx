@@ -17,6 +17,7 @@ export default async function SinglePost({ params }: { params: Params }) {
         key={post?.id}
         authorId={post?.authorId!}
         publishedAt={post?.publishedAt!}
+        showFollowButton={false}
       />
     </main>
   );

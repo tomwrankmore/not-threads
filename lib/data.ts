@@ -21,7 +21,7 @@ export async function getAllPosts() {
     orderBy: {
       publishedAt: 'desc',
     },
-  });``
+  });
   return posts;
 }
 
@@ -61,4 +61,17 @@ export async function getUserByID(id: string) {
     where: { id },
   });
   return user;
+}
+
+export async function getFavouritePosts(userId:string) {
+  const posts = await prisma.post.findMany({
+    where: { favorites: {
+      some: {
+        userId: userId,
+      }
+    } 
+  },
+  include: {author: true}
+  });
+  return posts;
 }

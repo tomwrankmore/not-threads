@@ -45,4 +45,5 @@ export type PostProps = {
   author: { name: string | null; image: string | null };
   publishedAt: Date;
   authorId: string;
+  showFollowButton: boolean
 };

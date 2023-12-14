@@ -39,7 +39,7 @@ const ProfileHeader = ({ children, name, email, image, id }: ProfileHeaderProps)
 
       <div className="flex justify-between pb-4 mb-4">
         <div>
-          <h2 className="text-xl font-semibold">{name}</h2>
+          <h2 className="text-xl font-semibold mb-4">{name}</h2>
           {/* children represents follow <FollowButton targetUserId={params.id} /> which is child in profile and user-profile  */}
           {children}
         </div>

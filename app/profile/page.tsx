@@ -44,6 +44,7 @@ export default async function ProfilePage() {
               author={post?.author!}
               publishedAt={post?.publishedAt}
               authorId={post?.authorId!}
+              showFollowButton={false}
             />
           );
         })

@@ -27,11 +27,11 @@ const LoggedInButton = () => {
         </Button> */}
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end">
-        <DropdownMenuItem>
+        <DropdownMenuItem asChild>
           <Link href="/profile" className="w-full">Profile</Link>
         </DropdownMenuItem>
-        <DropdownMenuItem>
-          <button onClick={() => signOut()} className="w-full text-left">Sign out</button>
+        <DropdownMenuItem asChild>
+          <button onClick={() => signOut({ callbackUrl: '/' })} className="w-full text-left">Sign out</button>
         </DropdownMenuItem>
         {/* <DropdownMenuItem>Create post</DropdownMenuItem> */}
       </DropdownMenuContent>

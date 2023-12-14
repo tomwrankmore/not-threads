@@ -146,3 +146,41 @@ export const unfollowUser = async (
   // revalidatePath(`/user-profile/${targetUserId}`);
   // redirect(`/user-profile/${targetUserId}`);
 };
+
+export const addFavourite = async (
+  postId: string,
+  userId: string
+) => {
+  try {
+    await prisma.favorite.create({
+      data: {
+        userId,
+        postId,
+      },
+    })
+  } catch (error) {
+    return {
+      error: getErrorMessage(error),
+    };
+  }
+}
+
+export const removeFavourite = async (
+  postId: string,
+  userId: string
+) => {
+  try {
+    await prisma.favorite.delete({
+      where: {
+        userId_postId: {
+          postId,
+          userId
+        }
+      },
+    })
+  } catch (error) {
+    return {
+      error: getErrorMessage(error),
+    };
+  }
+}

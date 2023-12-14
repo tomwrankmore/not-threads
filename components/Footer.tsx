@@ -114,11 +114,10 @@ export function Footer() {
     <footer className="max-w-3xl mx-auto flex items-center justify-between p-4 z-[100] relative">
         <div className="border-t border-neutral-950/10 w-full flex justify-between items-center">
           <Link href="/" aria-label="Home">
-            {/* <Logo className="h-8 text-c" fillOnHover /> */}
-            Logo
+            <Logo className="h-8 text-c" fillOnHover />
           </Link>
           <p className="text-sm text-neutral-700">
-            © Not Threads Inc. {new Date().getFullYear()}
+            © !Threads Inc. {new Date().getFullYear()}
           </p>
         </div>
     </footer>

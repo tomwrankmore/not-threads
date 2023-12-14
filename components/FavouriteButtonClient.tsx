@@ -1,47 +1,43 @@
 "use client";
-
-import { followUser, unfollowUser } from "@/lib/actions/actions";
 import { Button } from "./ui/button";
 import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
 import { useState, useTransition } from "react";
 import LoadingSpinner from "./LoadingSpinner";
+import { HeartOff, Heart, HeartIcon } from "lucide-react";
+import { addFavourite, removeFavourite } from "@/lib/actions/actions";
 
-type FollowClientProps = {
-  targetUserId: string;
-  currentUserId: string;
-  isFollowing: boolean;
+type FavouriteButtonClientProps = {
+  userId: string;
+  postId: string;
+  isFavourited: string;
 };
 
-export default function FollowClient({
-  targetUserId,
-  currentUserId,
-  isFollowing,
-}: FollowClientProps) {
+const FavouriteButtonClient = ({
+  userId,
+  postId,
+  isFavourited,
+}: FavouriteButtonClientProps) => {
   const router = useRouter();
   const [isPending, startTransition] = useTransition();
   const [isFetching, setIsFetching] = useState(false);
-  const followUserWithId = followUser.bind(null, targetUserId, currentUserId);
-  const unfollowUserWithId = unfollowUser.bind(
-    null,
-    targetUserId,
-    currentUserId
-  );
+  const addFavouriteWithId = addFavourite.bind(null, postId, userId);
+  const removeFavouriteWithId = removeFavourite.bind(null, postId, userId);
 
   // logical or make isMutating true if either of these are true
   const isMutating = isFetching || isPending;
 
   return (
     <>
-      {isFollowing ? (
+      {isFavourited ? (
         <form
           action={async () => {
             setIsFetching(true);
-            const result = await unfollowUserWithId();
+            const result = await removeFavouriteWithId();
             if (result?.error) {
               toast.error(result.error);
             } else {
-              toast.success(`Successfully unfollowed!`);
+              toast.success("Removing...");
             }
             setIsFetching(false);
             startTransition(() => {
@@ -49,17 +45,23 @@ export default function FollowClient({
             });
           }}
         >
-          <Button variant="outline" disabled={isMutating}>{!isMutating ? "Unfollow" : <LoadingSpinner />}</Button>
+          <Button
+            variant="link"
+            disabled={isMutating}
+            className="hover:animate-pulse"
+          >
+            {!isMutating ? <Heart color="#ff0000" fill="#ff0000" /> : <LoadingSpinner />}
+          </Button>
         </form>
       ) : (
         <form
           action={async () => {
             setIsFetching(true);
-            const result = await followUserWithId();
+            const result = await addFavouriteWithId();
             if (result?.error) {
               toast.error(result.error);
             } else {
-              toast.success(`Successfully followed!`);
+              toast.success("Adding to faves");
             }
             setIsFetching(false);
             startTransition(() => {
@@ -67,9 +69,17 @@ export default function FollowClient({
             });
           }}
         >
-          <Button variant="outline" disabled={isMutating}>{!isMutating ? "Follow" : <LoadingSpinner />}</Button>
+          <Button
+            variant="link"
+            disabled={isMutating}
+            className="hover:animate-pulse"
+          >
+            {!isMutating ? <Heart strokeWidth={0.5} /> : <LoadingSpinner />}
+          </Button>
         </form>
       )}
     </>
   );
-}
+};
+
+export default FavouriteButtonClient;

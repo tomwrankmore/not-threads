@@ -13,13 +13,22 @@ export default async function Home() {
     <PageWrapper>
       <div className="flex items-center justify-between mb-4">
         <h1 className="scroll-m-20 text-xl">All Posts!</h1>
+
         <AuthCheck>
-          <Link
-            href="/following"
-            className={buttonVariants({ variant: "outline" })}
-          >
-            Filter users you follow
-          </Link>
+          <div className="flex gap-4">
+            <Link
+              href="/following"
+              className={buttonVariants({ variant: "ghost" })}
+            >
+              Following
+            </Link>
+            <Link
+              href="/favourites"
+              className={buttonVariants({ variant: "ghost" })}
+            >
+              Favourites
+            </Link>
+          </div>
         </AuthCheck>
       </div>
       <div className="mb-4">
@@ -34,6 +43,7 @@ export default async function Home() {
                 author={post?.author!}
                 publishedAt={post?.publishedAt}
                 authorId={post?.authorId!}
+                showFollowButton={true}
               />
             );
           })}
