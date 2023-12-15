@@ -42,6 +42,7 @@ const FavouriteButtonClient = ({
             setIsFetching(false);
             startTransition(() => {
               router.refresh();
+              
             });
           }}
         >

@@ -4,8 +4,10 @@ import { addPost } from "@/lib/actions/actions";
 import AddPostButton from "./AddPostButton";
 import { toast } from "react-hot-toast";
 import { PostSchema } from "@/lib/types";
+import { useRouter } from 'next/navigation'
 
 export default function AddPostForm({ userId }: { userId: string }) {
+  const router = useRouter()
   async function clientAction(formData: FormData) {
     // Construct new post object to parse for Zod
     const newPost = {
@@ -34,6 +36,7 @@ export default function AddPostForm({ userId }: { userId: string }) {
       toast.error(response.error);
     } else {
       toast.success(`Success!`);
+      router.push('/all-posts')
     }
   }
 
