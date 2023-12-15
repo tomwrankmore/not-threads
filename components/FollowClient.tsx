@@ -50,7 +50,7 @@ export default function FollowClient({
             });
           }}
         >
-          <Button variant="link" disabled={isMutating} className="text-gray-600 hover:text-gray-600">{!isMutating ? <UserX /> : <LoadingSpinner />}</Button>
+          <Button variant="link" disabled={isMutating} className="text-white hover:text-gray-400">{!isMutating ? <UserX /> : <LoadingSpinner />}</Button>
         </form>
       ) : (
         <form
