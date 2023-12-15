@@ -53,7 +53,7 @@ const Post = async ({
               {author.name}
             </Link>
           </h1>
-          <p className="mb-4 text-sm tracking-tight">{content}</p>
+          <p className="text-sm tracking-tight">{content}</p>
         </div>
 
         <div className="flex items-center justify-between">
@@ -70,7 +70,7 @@ const Post = async ({
         </div>
       </div>
       <p className="text-xs text-right">
-        <Link href={`/single-post/${id}`}>{distance}</Link>
+        <Link href={`/single-post/${id}`} className="hover:underline">{distance}</Link>
       </p>
     </div>
   );
