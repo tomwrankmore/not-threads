@@ -1,7 +1,6 @@
 "use client";
 
 import { updatePostContent } from "@/lib/actions/actions";
-import AddPostButton from "./AddPostButton";
 import { toast } from "react-hot-toast";
 import { UpdatePostSchema } from "@/lib/types";
 import { Button } from "@/components/ui/button";
@@ -12,7 +11,6 @@ import {
   DialogFooter,
   DialogHeader,
   DialogTitle,
-  DialogTrigger,
 } from "@/components/ui/dialog";
 import { useState } from "react";
 
