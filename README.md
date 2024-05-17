@@ -35,3 +35,14 @@ The easiest way to deploy your Next.js app is to use the [Vercel Platform](https
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
 # not-threads
+
+
+Zod validation technique from 
+https://www.youtube.com/watch?v=tLhcyBfljYo
+
+I think initial Prisma set up came from
+https://youtu.be/GxUR4zIasB8?si=DFUTDaIf6o0BZhwl
+But there was definitely a lot of progression from this set up.
+
+Prisma breakdown:
+https://youtu.be/RebA5J-rlwg?si=uZm6JRy_LnZyrQHg

@@ -11,6 +11,13 @@ export default async function Home() {
   const posts = await getAllPosts();
   return (
     <PageWrapper>
+      <p className="text-sm mb-8 text-gray-400 p-4 border">
+        This is a Next14 project that utilises technologies like
+        Prisma/PostgresSQL, AuthJS, Zod and shadcn component library. A threads
+        style app with the ability to login, create, edit, delete posts, follow
+        other users and favourite their posts.
+      </p>
+
       <div className="flex items-center justify-between mb-4">
         <h1 className="scroll-m-20 text-xl">All Posts!</h1>
 
